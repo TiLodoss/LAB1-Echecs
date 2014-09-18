@@ -12,6 +12,7 @@ public class Echec{
 		COrdi Ordi = new COrdi (P);
 
 		while (true){
+			//System.out.println("lol");
 			char initialX = '\0';
 			char initialY = '\0';
 
