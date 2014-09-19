@@ -11,7 +11,6 @@ import ca.uqac.pat.echec.Plateau;
 abstract public class Piece implements Cloneable
 {
 	private int Valeur;	
-	private boolean dejaBouge = false;
 
 	protected 	Plateau 	Jeu;
 	protected 	int 		CoulBlanc;
