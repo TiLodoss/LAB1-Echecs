@@ -26,12 +26,21 @@ public class Pion extends Piece implements Cloneable{
   * @return Vrai si le déplacement a eu lieu correctement, faux sinon.
   */
 	public boolean Bouger(int Joueur, int incX, int incY, boolean PourVrai){
-		if (incY == CoulBlanc)			//Si c'est la bonne direction
+		if (incY>0 && CoulBlanc>0 || incY<0 && CoulBlanc<0)	 //Si c'est la bonne direction
 			if (incX == 0)				// s'il avance
-				{
-					if (Jeu.Case(PosX, PosY+incY).isCaseVide())	//vide devant
-						return super.Bouger(Joueur, incX, incY, PourVrai);
+			{
+				if (Jeu.Case(PosX, PosY+incY).isCaseVide()) {	//vide à la destination
+					// DEBUT de modif : PREMIER COUP DES PIONS AVANCE DE 2
+					if(Math.abs(incY)==1) 
+						return dejaBouge = super.Bouger(Joueur, incX, incY, PourVrai);
+
+					if(Math.abs(incY)==2 && !dejaBouge) {
+						if(Jeu.Case(PosX, PosY+CoulBlanc).isCaseVide())	// vide juste devant
+							return dejaBouge = super.Bouger(Joueur, incX, incY, PourVrai);
+					}
+					// FIN de modif
 				}
+			}
 			else						// s'il mange
 				if (Math.abs(incX) == 1)//S'il va en Dia (manger une piece)
 					if (!Jeu.Case(PosX + incX, PosY + incY).isCaseVide())
