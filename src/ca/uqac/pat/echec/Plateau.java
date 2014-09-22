@@ -116,6 +116,16 @@ public class Plateau{
 			return false;
 		}
 		if (isGood){
+			// DEBUT de modif : PROMOTION DES PIONS
+			int y = 0;
+			if(Joueur == -1) {	// Si Noir
+				y = 7;
+			}
+			for(int x=0; x<T; x++) {
+				if(Jeu[y][x] instanceof Pion)
+					Jeu[y][x] = new Reine(this, Joueur, x, y);
+			}
+			// FIN de modif
 			Joueur = -Joueur;
 		}
 		
