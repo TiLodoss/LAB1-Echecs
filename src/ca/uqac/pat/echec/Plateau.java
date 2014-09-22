@@ -117,9 +117,9 @@ public class Plateau{
 		}
 		if (isGood){
 			// DEBUT de modif : PROMOTION DES PIONS
-			int y = 0;
+			int y = 7;
 			if(Joueur == -1) {	// Si Noir
-				y = 7;
+				y = 0;
 			}
 			for(int x=0; x<T; x++) {
 				if(Jeu[y][x] instanceof Pion)
