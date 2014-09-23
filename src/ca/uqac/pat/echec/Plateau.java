@@ -116,21 +116,39 @@ public class Plateau{
 			return false;
 		}
 		if (isGood){
-			// DEBUT de modif : PROMOTION DES PIONS
-			int y = 7;
-			if(Joueur == -1) {	// Si Noir
-				y = 0;
-			}
-			for(int x=0; x<T; x++) {
-				if(Jeu[y][x] instanceof Pion)
-					Jeu[y][x] = new Reine(this, Joueur, x, y);
-			}
-			// FIN de modif
+			promotionPions();
+			SuppressionFantomes();
 			Joueur = -Joueur;
 		}
 		
 		return isGood;
 	}
+  	
+  	// AJOUT pions amis sur la ligne ennemie transformes en Dames
+	private void promotionPions() {
+		int y = 7;
+		if(Joueur == -1) {	// Si Noir
+			y = 0;
+		}
+		for(int x=0; x<T; x++) {
+			if(Jeu[y][x] instanceof Pion)
+				Jeu[y][x] = new Reine(this, Joueur, x, y);
+		}
+	}
+
+  	// AJOUT  Suppression des fantomes adverses (prise en passant)
+  	private void SuppressionFantomes() {
+		int y = 5;
+		if(Joueur == -1) {	// Si Noir
+			y = 2;
+		}
+		for(int x=0; x<T; x++) {
+			if(Jeu[y][x] instanceof CaseVide) {
+				Jeu[y][x] = new CaseVide(this, x, y);
+			}
+		}
+  	}
+
 
 /** Encapsulateur qui permet de mettre des pièces ou l'on veux dans le jeu.
   * @param X Posision en X.
