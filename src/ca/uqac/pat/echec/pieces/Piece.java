@@ -11,11 +11,11 @@ import ca.uqac.pat.echec.Plateau;
 abstract public class Piece implements Cloneable
 {
 	private int Valeur;	
-	private boolean dejaBouge;
 
 	protected 	Plateau 	Jeu;
 	protected 	int 		CoulBlanc;
 	protected 	int 		PosX, PosY;
+	protected	boolean		dejaBouge;
 
 	/**
 	 * Constructeur minimal d'une Pièce, utilisé par CaseVide.

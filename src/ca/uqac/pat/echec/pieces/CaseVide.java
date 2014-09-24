@@ -7,6 +7,9 @@ import ca.uqac.pat.echec.Plateau;
   * @see ca.uqac.pat.Echec
   */
 public class CaseVide extends Piece implements Cloneable{
+	
+	// AJOUT (prise en passant)
+	private Pion fantome;
 /**
   * Constructeur par défaut.
   */
@@ -14,11 +17,16 @@ public class CaseVide extends Piece implements Cloneable{
 		super (J, PX, PY);
 	}
 	
-	
 	public CaseVide(CaseVide original){
 		super(original);
 	}
 
+	// AJOUT d'un constructeur avec un pion (prise en passant)
+	public CaseVide(Plateau J, int PX, int PY, Pion fantome){
+		super (J, PX, PY);
+		this.fantome = fantome;
+	}
+	
 /**
   * La méthode Bouger de Piece est ici redéfinie pour interdire de bouger 
   * une case vide.
@@ -28,6 +36,18 @@ public class CaseVide extends Piece implements Cloneable{
 		return false;				//On ne peut jouer une case vide
 	}
 	
+	// AJOUT (prise en passant)
+	/**
+	 * Encapsuleur
+	 * @return 0 si la case n'es pas un pion fantome et la couleur du pion sinon.
+	 */
+	public int isPionFantome() {
+		if(fantome != null)
+			return fantome.CoulBlanc;
+		else
+			return 0;
+	}
+
 	
 	public String toString()	{ return " ";			}
 	public Object clone() 		{ return super.clone();	}
