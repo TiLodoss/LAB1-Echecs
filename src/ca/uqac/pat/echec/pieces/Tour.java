@@ -21,8 +21,16 @@ public class Tour extends Piece{
   * @return Vrai si le déplacement a eu lieu correctement, faux sinon.
   */
 	public boolean Bouger (int Joueur, int incX, int incY, boolean PourVrai){
-		if ((incX == 0 && incY != 0) || (incX != 0 && incY == 0))
-			return super.Bouger(Joueur, incX, incY, PourVrai);
+		// DEBUT MODIF : repérage du premier mouvement de la tour pour le roque
+		if ((incX == 0 && incY != 0) || (incX != 0 && incY == 0)) {
+			if (super.Bouger(Joueur, incX, incY, PourVrai)) {
+				dejaBouge = true; // une fois que la tour a bougé une fois, impossible de roquer
+				return true;
+			}
+			else return false;
+		}
+		
+		// FIN MODIF
 		else
 			return false;
 	}
