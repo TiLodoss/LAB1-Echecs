@@ -1,0 +1,91 @@
+﻿==============================
+|LABORATOIRE 1 - Jeu d'échecs|
+==============================
+													
+Membres de l'équipe de conception (équipe 1) : 
+Vincent AUNAI
+Guillaume BERT
+
+Membres de l'équipe d'implémentation (équipe 2) :
+Nicolas BERGERON
+Gabriel COTE-MOISESCU
+
+
+
+/*************************************************************/
+* Implémentation du premier coup de 2 cases pour les pions : *
+/*************************************************************/
+Implémentation de deux variables (int) "tourCourant" et "tourDuPion"
+Vérifier que le pion est sur la deuxième ligne de l'équipe.
+Si c'est le cas, autoriser le déplacement de deux cases et assigner la valeur de 
+"tourCourant" à "tourDuPion".
+
+Sinon, une seule case autorisée.
+
+
+
+/*********************************************/
+* Implémentation de la promotion des pions : *
+/*********************************************/
+Après le déplacement du pion, récupérer sa nouvelle position. Tester s'il se trouve
+sur la première ligne adverse.
+Si c'est le cas, instancier un objet Reine sur cette position. 
+
+
+
+/******************************************************/
+* Implémentation la prise en passant pour les pions : *
+/******************************************************/
+Tester si une pièce de couleur noire est à gauche ou à droite du pion à bouger.
+Si c'est le cas, vérifier que c'est un pion adverse.
+Si c'est le cas, vérifier que "tourduPion" = "tourCourant" - 1.
+Si c'est le cas, déplacer son propre pion en conséquence.
+Créer une case vide à la place du pion adverse.
+Si une des conditions n'est pas remplie, ne rien faire.
+
+
+
+/**********************************************/
+* Implémentation du petit roque en trichant : *
+/**********************************************/
+Vérifier que le roi n'a pas bougé.
+Vérifier que la tour de droite n'a pas bougé.
+Vérifier que les cases entre le roi et cette tour sont vides.
+Déplacer le roi et la tour dans les bonnes cases.
+Si une des conditions n'est pas remplie, ne rien faire.
+
+
+/****************************************/
+* Implémentation du petit roque légal : *
+/****************************************
+Vérifier que le roi n'est pas en échec.
+Vérifier que le roi n'a pas bougé.
+Vérifier que la tour de droite n'a pas bougé.
+Vérifier que les cases entre le roi et cette tour sont vides.
+Vérifier si les cases de déplacement sont en échec.
+Si les deux cases ne sont pas en échec, déplacer le roi de deux cases vers la droite, et
+la tour de deux cases vers la gauche.
+Si une des conditions n'est pas remplie, ne rien faire.
+
+
+
+/****************************************/
+* Implémentation du grand roque légal : *
+/****************************************/
+Vérifier que le roi n'est pas en échec.
+Vérifier que le roi n'a pas bougé.
+Vérifier que la tour de gauche n'a pas bougé.
+Vérifier si les cases de déplacement sont en échec.
+Si les deux cases ne sont pas en échec, déplacer le roi de deux cases vers la gauche, et 
+la tour de trois cases vers la droite.
+Si une des conditions n'est pas remplie, ne rien faire.
+
+
+
+/********************************************/
+* Implémentation de la gestion des échecs : *
+/*******************************************/
+Déplacer chaque pièce adverse vers la position actuelle du roi (pour de faux).
+Si elles peuvent y aller, le roi est en échec.
+
+			

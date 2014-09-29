@@ -1,0 +1,17 @@
+==============================
+|LABORATOIRE 1 - Jeu d'échecs|
+==============================
+													
+Membres de l'équipe de conception (équipe 1) : 
+Nicolas BERGERON
+Gabriel COTE-MOISESCU
+
+Membres de l'équipe d'implémentation (équipe 2) :
+Vincent AUNAI
+Guillaume BERT
+
+
+
+/*************************************************************/
+* Implémentation du premier coup de 2 cases pour les pions : *
+/*************************************************************/
