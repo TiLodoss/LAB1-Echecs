@@ -157,5 +157,10 @@ public class Plateau{
   */
 	public void setPos(int X, int Y, Piece P){
 		Jeu[Y][X] = P;
-	}		
+	}
+	
+	//AJOUT : méthode pour simuler les mouvements adverses
+	public void inverserJoueur() {
+		Joueur = -Joueur;
+	}
 }
