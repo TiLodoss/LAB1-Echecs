@@ -15,3 +15,64 @@ Guillaume BERT
 /*************************************************************/
 * Implémentation du premier coup de 2 cases pour les pions : *
 /*************************************************************/
+Dans la méthode bouger de Pion, on regarde si le ion veut avancer de deux cases en ligne
+droite, on vérifie qu'il n'a pas bougé (grâce au booléen protégé "dejaBouge" de Piece).
+Alors on déplace le pion avec la méthode "deplacePion" qui passe "dejaBouge" a vrai.
+
+
+
+/*********************************************/
+* Implémentation de la promotion des pions : *
+/*********************************************/
+La promotion est faite par la méthode "promotionPions" de Plateau. Elle vérifie la première
+ligne ennemie et ramplace tous les pions amis par des dames.
+
+
+/******************************************************/
+* Implémentation la prise en passant pour les pions : *
+/******************************************************/
+L'idée est de créer un "pion fantôme" dans la case sautée par les pions quand ils font un
+déplacement de 2 cases. Ce pion fantôme doit juste être un indicateur pour le pion adverse
+qui veut prendre en passant ! Il n'est pas une pièce !
+Exemple : 
+		DEBUT						FIN
+4|                 			4|   P      ------------------> Pion réel
+3|                 			3|   F      ------------------> Pion fantome du pion au-dessus        
+2| P P P P P P P P			2| P   P P P P P P  
+1| T C F D R F C T	 		1| T C F D R F C T 
+
+Les pions sont autorisés à manger les pions fantomes enemis.
+
+Donc on implémente en ajoutant un attribut "Pion fantome" à la classe caseVide avec
+un accesseur (les Pions ont besoin de savoir si la CaseVide contient un fantome).
+
+Lorsqu'on avance d'une case un pion, alors un fantome est créé derrière lui (Pion.java l.37)
+Ce fantome ne sera présent qu'un tour car dans la classe Plateau (l.120) on supprime,
+à la fin du tour de chaque joueur, les fantomes ennemis (qu'il a décidé de ne pas manger).
+Si un adversaire décide de manger un pion fantome (Pion.java l.57), alors on l'autorise
+en appellant "super.bouger" (l.61) et en plus on supprime le pion réel pris en passant.
+  
+
+
+/**********************************************/
+* Implémentation du petit roque en trichant : *
+/**********************************************/
+
+
+
+/****************************************/
+* Implémentation du petit roque légal : *
+/****************************************
+
+
+
+/****************************************/
+* Implémentation du grand roque légal : *
+/****************************************/
+
+
+
+/********************************************/
+* Implémentation de la gestion des échecs : *
+/*******************************************/
+
