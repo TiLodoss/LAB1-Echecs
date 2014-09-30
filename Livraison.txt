@@ -1,7 +1,7 @@
 ==============================
 |LABORATOIRE 1 - Jeu d'échecs|
 ==============================
-													
+
 Membres de l'équipe de conception (équipe 1) : 
 Nicolas BERGERON
 Gabriel COTE-MOISESCU
@@ -17,7 +17,7 @@ Guillaume BERT
 /*************************************************************/
 Dans la méthode bouger de Pion, on regarde si le ion veut avancer de deux cases en ligne
 droite, on vérifie qu'il n'a pas bougé (grâce au booléen protégé "dejaBouge" de Piece).
-Alors on déplace le pion avec la méthode "deplacePion" qui passe "dejaBouge" a vrai.
+Alors on déplace le pion avec la méthode "deplacePion" qui passe "dejaBouge" à vrai.
 
 
 
@@ -25,7 +25,7 @@ Alors on déplace le pion avec la méthode "deplacePion" qui passe "dejaBouge" a v
 * Implémentation de la promotion des pions : *
 /*********************************************/
 La promotion est faite par la méthode "promotionPions" de Plateau. Elle vérifie la première
-ligne ennemie et ramplace tous les pions amis par des dames.
+ligne ennemie et remplace tous les pions amis par des dames.
 
 
 /******************************************************/
@@ -51,28 +51,56 @@ Ce fantome ne sera présent qu'un tour car dans la classe Plateau (l.120) on supp
 à la fin du tour de chaque joueur, les fantomes ennemis (qu'il a décidé de ne pas manger).
 Si un adversaire décide de manger un pion fantome (Pion.java l.57), alors on l'autorise
 en appellant "super.bouger" (l.61) et en plus on supprime le pion réel pris en passant.
-  
-
-
-/**********************************************/
-* Implémentation du petit roque en trichant : *
-/**********************************************/
 
 
 
 /****************************************/
-* Implémentation du petit roque légal : *
-/****************************************
-
-
-
+* Implémentation des différents roques: *
 /****************************************/
-* Implémentation du grand roque légal : *
-/****************************************/
+Nous avons ajouté plusieurs méthodes pour permettre de roquer :
 
+1) verifierCasesVides() qui reçoit en paramètre un entier pour le type de roque
+(0 pour le petit, 1 pour le grand). Suivant le type de roque, on va vérifier les deux
+cases à droite du roi ou les trois cases à sa gauche.
+Si elles sont vides, la fonction retourne TRUE, FALSE sinon.
 
+2) deplacerTourPourRoque() qui reçoit en paramètres un entier pour le type roque
+(idem que fonction précédente) et un entier pour le joueur. Suivant le type de roque,
+on va déplacer la tour de gauche ou de droite. Suivant le joueur (1 pour les blancs,
+-1 pour les noirs), on va déplacer les tours du bas ou celles du haut.
 
-/********************************************/
-* Implémentation de la gestion des échecs : *
-/*******************************************/
+3) roiEnEchec() qui reçoit en paramètres le joueur et la position (x et y) du roi.
+Elle vérifie que la case où se trouve le roi est en échec ou non. Pour cela, on clone
+le plateau. Si le roi blanc est à tester, on change le joueur pour tester les mouvements
+adverses. Ensuite, pour chaque case du plateau, on regarde si on tombe sur une pièce
+noire. Si c'est le cas, on regarde si elle peut aller jusqu'au roi. Si oui, la fonction
+retourne TRUE, FALSE sinon.
+La fonction est utilisée pour vérifier que les cases sur lesquelles le roi va se déplacer
+durant le roque ne sont pas en échec.
+
+4) petitRoqueEnTrichant() qui reçoit les mêmes paramètres que la fonction Bouger().
+Elle permet de roquer sans vérifier que le roi est en échec ou que les cases du déplacement
+le sont. Dans la fonction Bouger(), on teste si le roi veut bouger de deux cases vers la
+droite et qu'il n'a pas bougé. Si c'est le cas, on appelle petitRoqueEnTrichant().
+Dans cette méthode, on vérifie que les deux cases à droite sont vides. Si c'est le cas,
+on déplace le roi de deux cases vers la droite et on appelle deplacerTourPourRoque pour
+déplacer la tour.
+
+5) petitRoqueLegal() : elle reçoit aussi les mêmes paramètres que Bouger(). Elle permet de
+roquer en vérifiant que le roi n'est ni en échec au départ, ni sur chaque case du déplacement.
+Dans la fonction Bouger(), on vérifie que le roi veut bouger de deux cases vers la droite
+et qu'il n'a pas bougé. Alors on appelle petitRoqueLegal().
+Dans cette méthode, on vérifie d'abord si la tour a déjà bougé (attribut dejaBouge de Tour
+mis à jour à chaque déplacement). Ensuite, on vérifie que les deux cases à droite du roi
+sont vides. Ensuite, on vérifie que la case initiale où se trouve le roi ainsi que les deux
+cases sur lesquelles il va se déplacer ne sont pas en échec. Si tout est OK, on déplace le
+roi et la tour.
+
+6) grandRoqueLegal() : elle reçoit également les mêmes paramètres que Bouger(). Elle permet
+de faire le grand roque en vérifiant que le roi n'est pas en échec (au départ et sur chaque
+case du déplacement). Dans la fonction Bouger(), on vérifie que le roi veut bouger de deux
+cases vers la gauche et qu'il n'a pas déjà bougé. Alors on appelle grandRoqueLegal().
+Cette méthode a le même fonctionnement que petitRoqueLegal() : seuls les déplacements du
+roi et de la tour sont différents.
+
 
